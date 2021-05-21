@@ -1,0 +1,144 @@
+{%  extends 'base.html' %}
+
+{% block title %}football match schema{% endblock %}
+
+{% block content %}
+
+<h3>football match schema</h3>
+
+<img src="static/img/football.png" alt="football schema">
+<hr>
+
+<h3>Add some info to our football league!</h3>
+
+<!-- button block to add elements to the league -->
+<div class="w3-margin">
+  <div class="w3-btn w3-ripple w3-border w3-round w3-lime" onclick="document.getElementById('id01').style.display='block'">new club</div>
+
+  <div class="w3-btn w3-ripple w3-border w3-round w3-green" onclick="document.getElementById('id02').style.display='block'">new player</div>
+
+  <div class="w3-btn w3-ripple w3-border w3-round w3-black" onclick="document.getElementById('id03').style.display='block'">new referee</div>
+</div>
+<hr>
+
+<!-- MODAL HANDLING -->
+
+<!-- NEW CLUB MODAL -->
+<div id="id01" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container">
+      <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      <h3>Add New Club</h3>
+
+      <form class="" action="/matches_schema/add_club" method="post">
+        <!-- add club name -->
+        <p>
+          <input type="text" name="name" placeholder="  Add your club name  ">
+        </p>
+
+        <!-- add club point total -->
+        <p>
+          <input type="text" name="points" placeholder="  Add your club point total  ">
+        </p>
+
+        <!-- add club button -->
+        <p>
+          <button>add club</button>
+        </p>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- NEW PLAYER MODAL -->
+<div id="id02" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container">
+      <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      <h3>Add New Player</h3>
+      <form class="" action="/matches_schema/add_player" method="post">
+        <!-- add player name -->
+        <p>
+          <input type="text" name="player_name" placeholder="  Add player's name  ">
+        </p>
+
+        <!-- add player position -->
+        <p>
+          <input type="text" name="position" placeholder="  Add player's position  ">
+        </p>
+
+        <!-- add player's club id -->
+        <p>
+          <input type="text" name="club_id" placeholder="  Add player's club id  ">
+        </p>
+
+        <!-- add player button -->
+        <p>
+          <button>add player</button>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- REF MODAL -->
+<div id="id03" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container">
+      <span onclick="document.getElementById('id03').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      <h3>Add New Ref</h3>
+      <form class="" action="/matches_schema/add_ref" method="post">
+        <!-- add club name -->
+        <p>
+          <input type="text" name="ref_name" placeholder="  Add referee name  ">
+        </p>
+
+        <!-- add club button -->
+        <p>
+          <button>add ref</button>
+        </p>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- DISPLAYING OUR DATA -->
+
+<!-- display club names -->
+<div class="w3-card-4 w3-padding w3-light-grey">
+  <h3 class="w3-text-lime">clubs</h3>
+  {% for club in clubs %}
+  <div class="w3-margin">
+    <h5 class="w3-cell w3-padding">{{club.name}} <i class="w3-tiny w3-text-green">club id: {{club.id}}</i></h5>
+    <h5 class="w3-cell w3-padding">Pts: {{club.points}}</h5>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- display player names -->
+<div class="w3-card-4 w3-padding">
+  <h3 class="w3-text-green">league players</h3>
+  {% for player in players %}
+  <div class="w3-margin">
+    <h5>{{player.name}}</h5>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- display ref names -->
+<div class="w3-card-4 w3-padding w3-light-grey">
+  <h3>refs</h3>
+  {% for ref in refs %}
+  <div class="w3-margin">
+    <h5>{{ref.name}}</h5>
+  </div>
+  {% endfor %}
+</div>
+
+
+
+
+{% endblock %}

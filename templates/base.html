@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  </head>
+  <body>
+    <!-- nav -->
+    <div class="w3-bar w3-black">
+      <div class="w3-bar-item">
+        <h3>Schemas Exercises</h3>
+      </div>
+
+      <div class="w3-btn w3-ripple w3-bar-item w3-right">
+        <a href="/matches_schema"><h5>Matches</h5></a>
+      </div>
+      <div class="w3-btn w3-ripple w3-bar-item w3-right">
+        <a href="/craigslist"><h5>Craigslist</h5></a>
+      </div>
+      <div class="w3-btn w3-ripple w3-bar-item w3-right">
+        <a href="/doctors"><h5>Doctor's Office</h5></a>
+      </div>
+
+    </div>
+    <!-- main content -->
+    <div class="w3-margin">
+      {% block content %}{% endblock %}
+    </div>
+
+  </body>
+</html>

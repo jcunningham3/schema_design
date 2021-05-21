@@ -1,0 +1,134 @@
+{%  extends 'base.html' %}
+
+{% block title %}doctor office{% endblock %}
+
+{% block content %}
+
+<h3>doctor's schema</h3>
+
+<img src="static/img/doctors_office.png" alt="doctor office schema">
+
+<!-- button block to add elements to the doctor's office -->
+<div class="w3-margin">
+  <div class="w3-btn w3-ripple w3-border w3-round w3-light-blue" onclick="document.getElementById('id01').style.display='block'">new doctor</div>
+
+  <div class="w3-btn w3-ripple w3-border w3-round w3-blue" onclick="document.getElementById('id02').style.display='block'">new patient</div>
+
+  <div class="w3-btn w3-ripple w3-border w3-round w3-purple" onclick="document.getElementById('id03').style.display='block'">new visit</div>
+</div>
+<hr>
+
+<!-- MODAL HANDLING -->
+
+<!-- NEW DOCTOR MODAL -->
+<div id="id01" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container">
+      <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      <h3>Add New Doctor</h3>
+
+      <form class="" action="/doctors/add_doctor" method="post">
+        <!-- add club name -->
+        <p>
+          <input type="text" name="doctors_name" placeholder="  Add doctor's name  ">
+        </p>
+
+        <!-- add specialty name -->
+        <p>
+          <input type="text" name="specialty" placeholder="  Add doctor's specialty  ">
+        </p>
+
+        <!-- add club button -->
+        <p>
+          <button>add doctor</button>
+        </p>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- NEW PATIENT MODAL -->
+<div id="id02" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container">
+      <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      <h3>Add New Patient</h3>
+      <form class="" action="/doctors/add_patient" method="post">
+        <!-- add patient name -->
+        <p>
+          <input type="text" name="patient_name" placeholder="  Add patient's name  ">
+        </p>
+
+        <!-- add patient button -->
+        <p>
+          <button>add patient</button>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- VISIT MODAL -->
+<div id="id03" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container">
+      <span onclick="document.getElementById('id03').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      <h3>Add New Visit</h3>
+      <form class="" action="/doctors/add_visit" method="post">
+        <!-- add doctor id -->
+        <p>
+          <input type="text" name="doctor_id" placeholder="  Add doctor's id  ">
+        </p>
+
+        <!-- add patient id -->
+        <p>
+          <input type="text" name="patient_id" placeholder="  Add patient's id  ">
+        </p>
+
+        <!-- add visit button -->
+        <p>
+          <button>add visit</button>
+        </p>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- DISPLAYING OUR DATA -->
+
+<!-- display doctors -->
+<div class="w3-card-4 w3-padding w3-light-grey">
+  <h3 class="w3-text-light-blue">doctors</h3>
+  {% for doctor in doctors %}
+  <div class="w3-margin">
+    <h5 class="w3-cell w3-padding">{{doctor.name}} <i class="w3-tiny w3-text-green">doctor id: {{doctor.id}}</i></h5>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- display patients names -->
+<div class="w3-card-4 w3-padding">
+  <h3 class="w3-text-blue">patients</h3>
+  {% for patient in patients %}
+  <div class="w3-margin">
+    <h5>{{patient.name}}</h5>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- display visit details -->
+<div class="w3-card-4 w3-padding w3-light-grey">
+  <h3 class="w3-text-purple">visit analysis</h3>
+  {% for visit in visits %}
+  <div class="w3-margin">
+    <h5>Doctor id: {{visit.doctor_id}}</h5>
+    <h5>Patient id: {{visit.patient_id}}</h5>
+  </div>
+  {% endfor %}
+</div>
+
+
+{% endblock %}
